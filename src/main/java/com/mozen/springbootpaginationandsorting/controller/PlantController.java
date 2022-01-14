@@ -1,5 +1,6 @@
 package com.mozen.springbootpaginationandsorting.controller;
 
+import com.mozen.springbootpaginationandsorting.mapper.PageToPageDTOMapper;
 import com.mozen.springbootpaginationandsorting.model.PageDTO;
 import com.mozen.springbootpaginationandsorting.model.PageSettings;
 import com.mozen.springbootpaginationandsorting.model.Plant;
@@ -17,9 +18,12 @@ public class PlantController {
 
     private PlantService plantService;
 
+    private PageToPageDTOMapper<Plant> pageToPageDTOMapper;
+
     @Autowired
-    public PlantController(final PlantService plantService) {
+    public PlantController(PlantService plantService, PageToPageDTOMapper<Plant> pageToPageDTOMapper) {
         this.plantService = plantService;
+        this.pageToPageDTOMapper = pageToPageDTOMapper;
     }
 
     @GetMapping("/page")
@@ -28,6 +32,6 @@ public class PlantController {
         log.info(
                 "Request for plant page received with data : " + pageSettings);
 
-        return plantService.getPlantPage(pageSettings);
+        return pageToPageDTOMapper.pageToPageDTO(plantService.getPlantPage(pageSettings));
     }
 }

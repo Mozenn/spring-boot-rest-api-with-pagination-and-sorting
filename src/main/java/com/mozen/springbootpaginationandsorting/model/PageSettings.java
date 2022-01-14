@@ -10,7 +10,7 @@ public class PageSettings {
 
     private int page = 0;
 
-    private int elementPerPage = 5;
+    private int elementPerPage = 2;
 
     private String direction = "dsc";
 
@@ -26,9 +26,5 @@ public class PageSettings {
                 log.warn("Invalid direction provided in PageSettings, defaulting to descending");
                 return Sort.by(key).descending();
         }
-    }
-
-    public void addKeyPrefix(String prefix) {
-        key = prefix + key;
     }
 }

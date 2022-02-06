@@ -18,7 +18,6 @@ public class PlantService {
 
     private PlantRepository plantRepository;
 
-    @Autowired
     public PlantService(
             PlantRepository plantRepository) {
         this.plantRepository = plantRepository;

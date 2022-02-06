@@ -20,7 +20,6 @@ public class PlantController {
 
     private PageToPageDTOMapper<Plant> pageToPageDTOMapper;
 
-    @Autowired
     public PlantController(PlantService plantService, PageToPageDTOMapper<Plant> pageToPageDTOMapper) {
         this.plantService = plantService;
         this.pageToPageDTOMapper = pageToPageDTOMapper;

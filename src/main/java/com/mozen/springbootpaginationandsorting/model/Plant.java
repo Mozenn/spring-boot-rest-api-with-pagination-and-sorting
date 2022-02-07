@@ -1,7 +1,9 @@
 package com.mozen.springbootpaginationandsorting.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -12,11 +14,14 @@ import java.util.Objects;
 @Table(name = "plant")
 @Getter
 @Setter
+@ToString
+@EqualsAndHashCode
 public class Plant {
 
     public Plant() {
         this.createdAt = Instant.now();
     }
+
     public Plant(String name, String scientificName, String family) {
         this.name = name;
         this.scientificName = scientificName;
@@ -42,32 +47,4 @@ public class Plant {
 
     @Column(name = "createdAt")
     private Instant createdAt = Instant.now();
-
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Plant)) return false;
-        Plant plant = (Plant) o;
-        return Objects.equals(id, plant.id) && Objects.equals(name, plant.name) && Objects.equals(scientificName,
-                plant.scientificName) && Objects.equals(family, plant.family) && Objects.equals(createdAt,
-                plant.createdAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, scientificName, family, createdAt);
-    }
-
-    @Override
-    public String toString() {
-        return "Plant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", scientificName='" + scientificName + '\'' +
-                ", family='" + family + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }
